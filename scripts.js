@@ -1476,70 +1476,70 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
 // Contact Form Scripts
 
-$(function() {
+// $(function() {
 
-    $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
-        preventSubmit: true,
-        submitError: function($form, event, errors) {
-            // additional error messages or events
-        },
-        submitSuccess: function($form, event) {
-            event.preventDefault(); // prevent default submit behaviour
-            // get values from FORM
-            var name = $("input#name").val();
-            var email = $("input#email").val();
-            var phone = $("input#phone").val();
-            var message = $("textarea#message").val();
-            var firstName = name; // For Success/Failure Message
-            // Check for white space in name for Success/Fail message
-            if (firstName.indexOf(' ') >= 0) {
-                firstName = name.split(' ').slice(0, -1).join(' ');
-            }
-            $.ajax({
-                url: "assets/mail/contact_me.php",
-                type: "POST",
-                data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    message: message
-                },
-                cache: false,
-                success: function() {
-                    // Success message
-                    $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-success')
-                        .append("<strong>Your message has been sent. </strong>");
-                    $('#success > .alert-success')
-                        .append('</div>');
+//     $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
+//         preventSubmit: true,
+//         submitError: function($form, event, errors) {
+//             // additional error messages or events
+//         },
+//         submitSuccess: function($form, event) {
+//             event.preventDefault(); // prevent default submit behaviour
+//             // get values from FORM
+//             var name = $("input#name").val();
+//             var email = $("input#email").val();
+//             var phone = $("input#phone").val();
+//             var message = $("textarea#message").val();
+//             var firstName = name; // For Success/Failure Message
+//             // Check for white space in name for Success/Fail message
+//             if (firstName.indexOf(' ') >= 0) {
+//                 firstName = name.split(' ').slice(0, -1).join(' ');
+//             }
+//             $.ajax({
+//                 url: "assets/mail/contact_me.php",
+//                 type: "POST",
+//                 data: {
+//                     name: name,
+//                     phone: phone,
+//                     email: email,
+//                     message: message
+//                 },
+//                 cache: false,
+//                 success: function() {
+//                     // Success message
+//                     $('#success').html("<div class='alert alert-success'>");
+//                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+//                         .append("</button>");
+//                     $('#success > .alert-success')
+//                         .append("<strong>Your message has been sent. </strong>");
+//                     $('#success > .alert-success')
+//                         .append('</div>');
 
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
-                },
-                error: function() {
-                    // Fail message
-                    $('#success').html("<div class='alert alert-danger'>");
-                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
-                    $('#success > .alert-danger').append('</div>');
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
-                },
-            });
-        },
-        filter: function() {
-            return $(this).is(":visible");
-        },
-    });
+//                     //clear all fields
+//                     $('#contactForm').trigger("reset");
+//                 },
+//                 error: function() {
+//                     // Fail message
+//                     $('#success').html("<div class='alert alert-danger'>");
+//                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+//                         .append("</button>");
+//                     $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
+//                     $('#success > .alert-danger').append('</div>');
+//                     //clear all fields
+//                     $('#contactForm').trigger("reset");
+//                 },
+//             });
+//         },
+//         filter: function() {
+//             return $(this).is(":visible");
+//         },
+//     });
 
-    $("a[data-toggle=\"tab\"]").click(function(e) {
-        e.preventDefault();
-        $(this).tab("show");
-    });
-});
+//     $("a[data-toggle=\"tab\"]").click(function(e) {
+//         e.preventDefault();
+//         $(this).tab("show");
+//     });
+// });
 
 
 /*When clicking on Full hide fail/success boxes */
@@ -1551,3 +1551,40 @@ $('#name').focus(function() {
 if(top<-600){if(index===0){$chart.easyPieChart({easing:'easeOutBounce',onStep:function(from,to,percent){$(this.el).find('.percent').text(Math.round(percent))}})}
 index++}})
 var chart=window.chart=$chart.data('easyPieChart');$('.js_update').on('click',function(){chart.update(Math.random()*100)});$('a.page-scroll').on("click",function(event){var $anchor=$(this);$('html, body').stop().animate({scrollTop:$($anchor.attr('href')).offset().top},1500,'easeInOutExpo');event.preventDefault()});$(document).on('click','.navbar-collapse.in',function(e){if($(e.target).is('a')&&$(e.target).attr('class')!='dropdown-toggle'){$(this).collapse('hide')}});$('body').scrollspy({target:'.navbar-collapse',offset:195});new WOW().init();$('.counter').counterUp({delay:10,time:1000});$(".client-logo").owlCarousel({autoPlay:3000,items:6,itemsDesktop:[1199,3],itemsDesktopSmall:[979,3],pagination:!1})})(jQuery)
+
+// script.js
+function submitForm() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    //var phone = document.getElementById("phone").value;
+    var message = document.getElementById("message").value;
+
+    console.log('name');
+
+    // Store the data or send it to the server for further processing
+    // For this example, let's assume you have an endpoint on your server to handle this data.
+    sendDataToServer(name, email, message);
+}
+
+function sendDataToServer(name, email, message) {
+    // You will make an AJAX request to your server here.
+    // This example assumes you're using the fetch API.
+    fetch('/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
